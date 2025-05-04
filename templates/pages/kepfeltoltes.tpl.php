@@ -1,17 +1,17 @@
 <?php
-    // Alkalmazás logika:
+
     include('config.inc.php');
     $uzenet = array();   
 
-    // Űrlap ellenőrzés:
+   
     if (isset($_POST['kuld'])) {
-        //print_r($_FILES);
+       
         foreach($_FILES as $fajl) {
-            if ($fajl['error'] == 4);   // Nem töltött fel fájlt
+            if ($fajl['error'] == 4);   
             elseif (!in_array($fajl['type'], $MEDIATIPUSOK))
                 $uzenet[] = " Nem megfelelő típus: " . $fajl['name'];
-            elseif ($fajl['error'] == 1   // A fájl túllépi a php.ini -ben megadott maximális méretet
-                        or $fajl['error'] == 2   // A fájl túllépi a HTML űrlapban megadott maximális méretet
+            elseif ($fajl['error'] == 1   
+                        or $fajl['error'] == 2   
                         or $fajl['size'] > $MAXMERET) 
                 $uzenet[] = " Túl nagy állomány: " . $fajl['name'];
             else {
@@ -25,7 +25,7 @@
             }
         }        
     }
-    // Megjelenítés logika:
+  
 ?><!DOCTYPE html>
 <html>
 <head>
